@@ -9,9 +9,9 @@
   {
     "objectID": "aboutme.html",
     "href": "aboutme.html",
-    "title": "About me",
+    "title": "Welcome to the Joe Show",
     "section": "",
-    "text": "Add some text and a figure describing myself.\nFor details, see the instructions."
+    "text": "Hi everyone! My name is Joe Dainis, and I am a fourth year PhD candidate in the Infectious Diseases department at UGA.\n\n\nI hail from the wonderful state of Massachusetts, born and raised in the Worcester area. I completed two undergraduate BS degrees at Worcester Polytechnic Institute; one in biology/biotechnology and another in biochemistry. After undergrad, I felt that I wanted to get more research experience prior to exploring a PhD, and worked as a research assistant for two years in Dr. Richard Bennett’s lab at Brown Univeristy. I worked on Candida albicans, an opportunistic fungi, for those two years prior to transitioning to my PhD at UGA, where I study host-pathogen interactions. Specifically, I am investigating whether host genetics play a role in susceptibility to infection with Naegleria fowleri, also known as the brain-eating amoebae!\n\n\n\nAs part of the Bioinformatics certificate at UGA, I have completed a few courses using coding/programming. I have taken several statistics courses across both UGA and my undergrad and feel comfortable with common statistical analyses (although I’ll have to blow off the dust so to speal haha). I also have experience using GitHub and R/R Studio and have dabbled in Python. I have used R Studio in a different course to do data analysis of many types of datasets, including bulk RNAseq, single cell RNAseq, and other sorts of -omics approaches.\n\n\n\nI am most interested in this course to finally become comfortable with bioinformatic pipelines to answer questions. I feel that across the courses I have taken for my bioinformatics certificate, I have learned the tools and how to use them, and I hope in this course to develop my comfort so that it feels more natural to develop code/use R Studio or Positron/use GitHub. I want to take that next step in comfort in using bioinformatics!\nAs for something interesting about me, if the fact that I hang out with an amoebae every day that has a 97% mortality rate when it infects someone isn’t enough, I would also say that I am a second degree black belt in Shotokan karate. My quirky fact would be that I am OBSESSED with Trader Joe’s and I accepted my PhD appointment at UGA because there was one in Athens (and it helped that UGA has the greatest collection of parasite research in the US :)\n\n\n\n\n\n\nHere I am in Toronto attending a hockey game featuring my favorite hockey team: The Boston Bruins!\n\n\n\n\n\nI have decided to include two things that I found interesting. First, I wanted to include a Shiny App that I made as part of a class I took at UGA (STAT6365). In this website app, we made a “Least Squared Regression App”, which was developed to take an input excel file of transcriptomic gene expression signatures and outputs a volcano plot looking at differentially expressed genes (log-fold vs p-value). http://127.0.0.1:6641/\nA second material I have included here is a link to a website that discusses applications of data analysis to infectious diseases. Pathogens are one of my core interests, so much of what I would like to apply data analysis techniques to would be related to pathogens and the diseases they cause. I appreciated the breakdown that this toolkit site offered for all of the steps to consider for the different types of datasets you could work with, from pathogen data to human data to socioeconomics. https://www.infectious-diseases-toolkit.org/data-analysis/"
   },
   {
     "objectID": "index.html",
@@ -19,5 +19,40 @@
     "title": "My website and data analysis portfolio",
     "section": "",
     "text": "Feel free to change the text below any way you want 😁!\n\nHello\n\nAnd hello again\nWelcome to my website and data analysis portfolio.\n\nPlease use the Menu Bar above to look around.\nHave fun!"
+  },
+  {
+    "objectID": "aboutme.html#who-is-joe",
+    "href": "aboutme.html#who-is-joe",
+    "title": "Welcome to the Joe Show",
+    "section": "",
+    "text": "I hail from the wonderful state of Massachusetts, born and raised in the Worcester area. I completed two undergraduate BS degrees at Worcester Polytechnic Institute; one in biology/biotechnology and another in biochemistry. After undergrad, I felt that I wanted to get more research experience prior to exploring a PhD, and worked as a research assistant for two years in Dr. Richard Bennett’s lab at Brown Univeristy. I worked on Candida albicans, an opportunistic fungi, for those two years prior to transitioning to my PhD at UGA, where I study host-pathogen interactions. Specifically, I am investigating whether host genetics play a role in susceptibility to infection with Naegleria fowleri, also known as the brain-eating amoebae!"
+  },
+  {
+    "objectID": "aboutme.html#joes-bioinformatic-background",
+    "href": "aboutme.html#joes-bioinformatic-background",
+    "title": "Welcome to the Joe Show",
+    "section": "",
+    "text": "As part of the Bioinformatics certificate at UGA, I have completed a few courses using coding/programming. I have taken several statistics courses across both UGA and my undergrad and feel comfortable with common statistical analyses (although I’ll have to blow off the dust so to speal haha). I also have experience using GitHub and R/R Studio and have dabbled in Python. I have used R Studio in a different course to do data analysis of many types of datasets, including bulk RNAseq, single cell RNAseq, and other sorts of -omics approaches."
+  },
+  {
+    "objectID": "aboutme.html#joes-interests-and-quirks",
+    "href": "aboutme.html#joes-interests-and-quirks",
+    "title": "Welcome to the Joe Show",
+    "section": "",
+    "text": "I am most interested in this course to finally become comfortable with bioinformatic pipelines to answer questions. I feel that across the courses I have taken for my bioinformatics certificate, I have learned the tools and how to use them, and I hope in this course to develop my comfort so that it feels more natural to develop code/use R Studio or Positron/use GitHub. I want to take that next step in comfort in using bioinformatics!\nAs for something interesting about me, if the fact that I hang out with an amoebae every day that has a 97% mortality rate when it infects someone isn’t enough, I would also say that I am a second degree black belt in Shotokan karate. My quirky fact would be that I am OBSESSED with Trader Joe’s and I accepted my PhD appointment at UGA because there was one in Athens (and it helped that UGA has the greatest collection of parasite research in the US :)"
+  },
+  {
+    "objectID": "aboutme.html#phot-joe",
+    "href": "aboutme.html#phot-joe",
+    "title": "Welcome to the Joe Show",
+    "section": "",
+    "text": "Here I am in Toronto attending a hockey game featuring my favorite hockey team: The Boston Bruins!"
+  },
+  {
+    "objectID": "aboutme.html#interesting-data-analysis-material",
+    "href": "aboutme.html#interesting-data-analysis-material",
+    "title": "Welcome to the Joe Show",
+    "section": "",
+    "text": "I have decided to include two things that I found interesting. First, I wanted to include a Shiny App that I made as part of a class I took at UGA (STAT6365). In this website app, we made a “Least Squared Regression App”, which was developed to take an input excel file of transcriptomic gene expression signatures and outputs a volcano plot looking at differentially expressed genes (log-fold vs p-value). http://127.0.0.1:6641/\nA second material I have included here is a link to a website that discusses applications of data analysis to infectious diseases. Pathogens are one of my core interests, so much of what I would like to apply data analysis techniques to would be related to pathogens and the diseases they cause. I appreciated the breakdown that this toolkit site offered for all of the steps to consider for the different types of datasets you could work with, from pathogen data to human data to socioeconomics. https://www.infectious-diseases-toolkit.org/data-analysis/"
   }
 ]
