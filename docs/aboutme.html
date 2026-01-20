@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -177,40 +212,23 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="interesting-data-analysis-material">Interesting Data Analysis Material</h2>
 <p>I have decided to include two things that I found interesting. First, I wanted to include a Shiny App that I made as part of a class I took at UGA (STAT6365). In this website app, we made a “Least Squared Regression App”, which was developed to take an input excel file of transcriptomic gene expression signatures and outputs a volcano plot looking at differentially expressed genes (log-fold vs p-value). <a href="http://127.0.0.1:6641/" class="uri">http://127.0.0.1:6641/</a></p>
 <p>A second material I have included here is a link to a website that discusses applications of data analysis to infectious diseases. Pathogens are one of my core interests, so much of what I would like to apply data analysis techniques to would be related to pathogens and the diseases they cause. I appreciated the breakdown that this toolkit site offered for all of the steps to consider for the different types of datasets you could work with, from pathogen data to human data to socioeconomics. <a href="https://www.infectious-diseases-toolkit.org/data-analysis/" class="uri">https://www.infectious-diseases-toolkit.org/data-analysis/</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Joe’s List of Top Travel Destinations</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Japan**</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>I was supposed to travel to Japan for 4 weeks, but this was canceled due to the COVID-19 pandemic. I NEED TO GO.</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Argentina/Brazil**</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>I want to do a backpacking trip through Patagonia!</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Southeast Asia (Thailand, Vietnam, Laos)**</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Namely for the FOOD</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Iceland**</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>The nature looks fantastic and I would love to see the Aurora Borealis some day</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**India**</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>I have traveled to India before and visited Himachal Pradesh and Delhi. I want to visit South India since I have heard the culture and food is so different from North India!</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-</section>
-<section id="joes-list-of-top-travel-destinations" class="level1">
-<h1>Joe’s List of Top Travel Destinations</h1>
-<ol type="1">
-<li><strong>Japan</strong></li>
-</ol>
-<ul>
-<li>I was supposed to travel to Japan for 4 weeks but this was canceled due to the COVID-19 pandemic. I NEED TO GO.</li>
-</ul>
-<ol start="2" type="1">
-<li><strong>Argentina/Brazil</strong></li>
-</ol>
-<ul>
-<li>I want to do a backpacking trip through Patagonia!</li>
-</ul>
-<ol start="3" type="1">
-<li><strong>Southeast Asia (Thailand, Vietnam, Laos)</strong></li>
-</ol>
-<ul>
-<li>Namely for the FOOD</li>
-</ul>
-<ol start="4" type="1">
-<li><strong>Iceland</strong></li>
-</ol>
-<ul>
-<li>The nature looks fantastic and I would love to see the Aurora Borealis some day</li>
-</ul>
-<ol start="5" type="1">
-<li><strong>India</strong></li>
-</ol>
-<ul>
-<li>I have traveled to India before and visited Himachal Pradesh and Delhi. I want to visit South India since I have heard the culture and food is so different from North India!</li>
-</ul>
 </section>
 <section id="joes-journey" class="level1">
 <h1>Joe’s Journey</h1>

@@ -1,5 +1,85 @@
 ---
 title: "Future Exercise"
 ---
+```{r}
+#Install dslabs package
 
-Placeholder file for a future exercise.
+#Load dslabs library
+#install.packages("dslabs")
+library("dslabs")
+
+#See overview of the gapminder data from dslabs
+str(gapminder)
+
+#Get summary of the gapminder data
+summary(gapminder)
+
+#Determine data type of gapminder
+class(gapminder)
+
+#Assign African countries to africadata, then see overview and summary of subsetted data
+africadata = subset(gapminder, continent == "Africa")
+str(africadata)
+summary(africadata)
+
+#Install and load dplyr package
+#install.packages("dplyr")
+library("dplyr")
+
+#Select infanty mortality and life expctancy from africadata
+africainfantmortal = select(africadata, c('infant_mortality','life_expectancy'))
+
+#Select population and life expectancy from africadata
+africapop = select(africadata, c('population','life_expectancy'))
+
+#See overview and summarize selected data from africadata
+str(africainfantmortal)
+summary(africainfantmortal)
+str(africapop)
+summary(africapop)
+
+#Install and Load ggplot2 package to make plots
+#install.packages("ggplot2")
+library("ggplot2")
+
+#Make a plot of life expectancy versus infant mortality
+ggplot(data = africainfantmortal, aes(x = life_expectancy, y = infant_mortality)) + geom_point()
+
+#Make a plot of life expectancy versus population, with population on a log scale
+ggplot(data = africapop, aes(x = life_expectancy, y = population)) + geom_point() + scale_y_log10()
+
+#The reason that we see streaks of data is because of this data being collected over time and there are different years for different countries being sampled.
+
+#Find out which years have missing/NA values
+africadata$year[is.na(africadata$infant_mortality)]
+
+#Extract data from the year 2000 from africadata
+africa2000 = subset(africadata, year == "2000")
+str(africa2000)
+summary(africa2000)
+
+#Make Same Plots as Done Before
+##Select infanty mortality and life expctancy from africa2000
+africainfantmortal2000 = select(africa2000, c('infant_mortality','life_expectancy'))
+
+##Select population and life expectancy from africa2000
+africapop2000 = select(africa2000, c('population','life_expectancy'))
+
+##Make a plot of life expectancy versus infant mortality for 2000 Africa Data
+ggplot(data = africainfantmortal2000, aes(x = life_expectancy, y = infant_mortality)) + geom_point()
+
+##Make a plot of life expectancy versus population, with population on a log scale for 2000 Africa Data
+ggplot(data = africapop2000, aes(x = life_expectancy, y = population)) + geom_point() + scale_y_log10()
+
+#Fit a linear model with infant_mortality as the predictor
+model_infant = lm(life_expectancy ~ infant_mortality, data = africainfantmortal2000)
+
+#Fit a linear model with population as the predictor
+model_pop = lm(life_expectancy ~ population, data = africapop2000)
+
+#Summarize the models
+summary(model_infant)
+summary(model_pop)
+
+#What we found using this model was that infant mortality is a statistically significant predictor of life expectancy (p-value = 2.826e-08), whereas population is not a statistically significant predictor of life expectancy. This matches with the plots we generated previously, where was saw a strong positive correlation between life expectancy and infant mortality and no correlation between life expectancy and population.
+```
