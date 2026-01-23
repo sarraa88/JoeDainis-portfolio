@@ -84,3 +84,62 @@ summary(model_pop)
 
 #What we found using this model was that infant mortality is a statistically significant predictor of life expectancy (p-value = 2.826e-08), whereas population is not a statistically significant predictor of life expectancy. This matches with the plots we generated previously, where was saw a strong positive correlation between life expectancy and infant mortality and no correlation between life expectancy and population.
 ```
+
+
+# Part2 Addtional data exploration
+## This section contributed by LiangLai
+```{r}
+# Load packages
+library(dslabs)
+library(tidyverse)
+
+# Add dataset
+data(murders)
+
+# Look structure
+str(murders)
+summary(murders)
+
+# Check missing
+colSums(is.na(murders))
+
+# Data processing
+# Raw counts of murders are not directly comparable，so we create a murder rate per 100,000 people.
+murders2 <- murders %>%
+  mutate(
+    murder_rate = total / population * 100000
+  )
+summary(murders2$murder_rate)
+
+# Exploratory
+# Distribution of murder rates across states
+ggplot(murders2, aes(x = murder_rate)) +
+  geom_histogram(bins = 20) +
+  labs(
+    title = "Distribution of Murder Rates Across US States",
+    x = "Murder rate per 100,000 population",
+    y = "Number of states"
+  )
+
+# The murder rate in most states is relatively low (less than 5 cases per 100,000 people), while in a few states it is much higher, resulting in a right-skewed distribution pattern.
+
+# Comparison of murder rates by region
+ggplot(murders2, aes(x = region, y = murder_rate)) +
+  geom_boxplot() +
+  labs(
+    title = "Murder Rates by US Region",
+    x = "Region",
+    y = "Murder rate per 100,000 population"
+  )
+
+# Regionally, the South shows higher median murder rates and greater variability compared with other regions. 
+
+# Linear model 
+# we fit a linearregression model with murder rate as the outcome.
+model_mur <- lm(murder_rate ~ log(population) + region, data = murders2)
+
+# Display results
+summary(model_mur)
+
+# In the result of regression model, it reveals that population size has no significant impact on murder rates (p = 0.976), indicating that state population size is not meaningfully associated with murder rates. Using the Northeast as the reference category, states in the South have significantly higher murder rates, with an average increase of 2.57 murders per 100,000 population compared to Northeast states (p = 0.008). In contrast, differences for North Central (β = 0.34, p = 0.736) and West (β = −0.02, p = 0.987) relative to the Northeast are not statistically significant.
+```
