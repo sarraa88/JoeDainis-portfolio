@@ -10,8 +10,10 @@ website:
         file: aboutme.qmd
       - text: "Projects"
         menu:
-          - text: "Starter Analysis Exercise"
-            file: starter-analysis-exercise/starter-analysis-exercise.qmd
+        - text: "Starter Analysis Exercise"
+          file: starter-analysis-exercise/starter-analysis-exercise.qmd
+        - text: "READy Exercise"
+          file: ready-exercise/ready-exercise.html   
     right:
       - icon: github 
         href: https://github.com/jdainis/JoeDainis-portfolio        
