@@ -130,7 +130,7 @@ summary(model)
 
 # Fit a logistic regression of Bank Savings of these Squirrels based on their Burrow Location
 
-model2 <- lm(BankSavings_log ~ BurrowLoc, data = syn_dat)
+model2 <- lm(BankSavings ~ BurrowLoc, data = syn_dat)
 summary(model2)
 
 #Taken together, it appears that Burrow Location is a statistically strong indicator of fame status of squirrels, with being a resident of Chestnut Suites giving a statistically significant predictor of being a rich elite famous squirrel. In addition, burrow location, specifically Chestnut Suites, was a strong predictor of the bank savings of these squirrels, indicating that these Chestnut Suites squirrels are likely to have higher levels of savings.
