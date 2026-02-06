@@ -3,22 +3,22 @@ project:
   output-dir: docs
 
 website:
-  title: "My Portfoli-Joe: Joe Dainis's Portfolio "
+  title: "My Portfoli-Joe: Joe Dainis's Portfolio"
   navbar:
     left:
       - text: "About Me"
         file: aboutme.qmd
       - text: "Projects"
         menu:
-        - text: "Starter Analysis Exercise"
-          file: starter-analysis-exercise/starter-analysis-exercise.qmd
-        - text: "READy Exercise"
-          file: ready-exercise/ready-exercise.html
-        - text: "Data Exercise"
-          file: data-exercise/data-exercise.qmd
+          - text: "Starter Analysis Exercise"
+            file: starter-analysis-exercise/starter-analysis-exercise.qmd
+          - text: "READY Exercise"
+            file: ready-exercise/ready-exercise.qmd
+          - text: "Data Exercise"
+            file: data-exercise/data-exercise.qmd
     right:
-      - icon: github 
-        href: https://github.com/jdainis/JoeDainis-portfolio        
+      - icon: github
+        href: https://github.com/jdainis/JoeDainis-portfolio    
 format:
   html:
     theme: cosmo
