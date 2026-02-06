@@ -1,5 +1,5 @@
 ---
-title: "Synthetic Data Exercise"
+title: "Data Exercise"
 ---
 ```{r}
 #ensure packages are installed
