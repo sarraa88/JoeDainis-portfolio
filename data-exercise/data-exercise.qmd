@@ -1,0 +1,137 @@
+---
+title: "Synthetic Data Exercise"
+---
+```{r}
+#ensure packages are installed
+#load the necessary libraries
+library(dplyr)
+library(purrr)
+library(lubridate)
+library(ggplot2)
+
+
+#set seed for reproducibility
+set.seed(4274)
+
+#define number of observations (squirrels) to generate
+n_squirrels <- 1000
+
+#create an empty dataframe with variable placeholders
+syn_dat <- data.frame(
+  SquirrelID = numeric(n_squirrels),
+  Age = numeric(n_squirrels),
+  Gender = character(n_squirrels),
+  SquirrelHollywood = integer(n_squirrels),
+  BurrowLoc = character(n_squirrels),
+  MoveInDate = lubridate::as_date(character(n_squirrels)),
+  AcornCount = numeric(n_squirrels),
+  BankSavings = numeric(n_squirrels)
+)
+
+#Variable 1: SquirrelID
+syn_dat$SquirrelID <- 1:n_squirrels
+
+#Variable 2: Age (Numerical)
+syn_dat$Age <- round(rnorm(n_squirrels, mean = 8, sd = 3), 1)
+
+#Variable 3: Gender (Categorical)
+syn_dat$Gender <- purrr::map_chr(sample(c("Male", "Female"), n_squirrels, replace = TRUE), as.character)
+
+#Variable 4: Famous Status of Squirrel (Binary Variable, 0 = Not Famous, 1 = Famous)
+syn_dat$SquirrelHollywood <- purrr::map_int(sample(0:1, n_squirrels, replace = TRUE, prob = c(0.90, 0.10)), as.integer)
+
+#Variable 5: Burrow Location (Categorical)
+##Assign Burrow Names
+burrows <- c(
+  "Chestnut Suites",
+  "Oak Hill Lounge",
+  "Hazelnut Inn",
+  "Peanut Pines",
+  "Almond Village",
+  "Kola Nut Apartments"
+)
+
+#Assign probability of famous squirrel living in Chestnut Suites
+prob_hollywood <- c(0.75, 0.05, 0.05, 0.05, 0.05, 0.05)
+# A 75% chance of Chestnut Suites for famous squirrels
+
+#Assign probability of nonfamous squirrel living anywhere
+prob_regular <- c(0.05, 0.20, 0.20, 0.20, 0.15, 0.20)
+# A 5% chance of Chestnut Suites for nonfamous squirrels
+
+#Generate Burrow
+syn_dat$BurrowLoc <- purrr::map_chr(
+  syn_dat$SquirrelHollywood,
+  function(h) {
+    sample(
+      burrows,
+      size = 1,
+      prob = if (h == 1) prob_hollywood else prob_regular
+    )
+  }
+)
+
+#Variable 6: Move-in Date (Date Variable)
+syn_dat$MoveInDate <- lubridate::as_date(sample(seq(from = lubridate::as_date("2020-01-01"), to = lubridate::as_date("2025-12-31"), by = "days"), n_squirrels, replace = TRUE))
+
+#Variable 7: Acorn Count (numerical)
+syn_dat$AcornCount <- round(runif(n_squirrels, min = 5, max = 10000))
+
+#Variable 8: Bank Savings (numerical)
+syn_dat$BankSavings[syn_dat$SquirrelHollywood == 0] <- round(rnorm(sum(syn_dat$SquirrelHollywood == 0), mean = 100, sd = 10), 1)
+syn_dat$BankSavings[syn_dat$SquirrelHollywood == 1] <- round(rnorm(sum(syn_dat$SquirrelHollywood == 1), mean = 100000, sd = 500), 1)
+
+#Print the first few rows of the data
+head(syn_dat)
+
+#Save the simulated data to a CSV file
+write.csv(syn_dat, "syn_dat_squirreltown.csv", row.names = FALSE)
+
+#Preview the generated synthetic data
+summary(syn_dat)
+
+#Boxplot for Acorn Count and Bank Savings for Squirrels in Various Homes
+ggplot(syn_dat, aes(x = BurrowLoc, y = AcornCount)) +
+  geom_boxplot() +
+  labs(x = "Burrow Location", y = "Acorn Number") +
+  theme_bw()
+
+#We see that the number of acorns per squirrel does not differ wildly across the burrow locations
+
+#Jitter plot to highlight the rich squirrels with higher savings having a higher success rate of getting into Chestnut Suites
+ggplot(syn_dat, aes(x = BurrowLoc, y = BankSavings)) +
+  geom_jitter(
+    aes(color = BankSavings > 80000),
+    width = 0.2,
+    alpha = 0.6
+  ) +
+  scale_color_manual(
+    name = "Wealth Status",
+    values = c("FALSE" = "gray60", "TRUE" = "red"),
+    labels = c("Regular", "Rich elite")
+  ) +
+  theme_bw()
+
+#A Violin plot to highlight the wealth inequality between famous and nonfamous squirrels
+ggplot(syn_dat, aes(x = factor(SquirrelHollywood), y = BankSavings)) +
+  geom_violin(alpha = 0.6) +
+  geom_boxplot(width = 0.1, outlier.shape = NA) +
+  scale_y_log10(labels = scales::dollar) +
+  theme_bw() +
+  labs(x = "Famous Squirrel (1 = Famous)", y = "Bank Savings (log scale)")
+
+# Fit a logistic regression of Fame Status of Squirrels based on their Burrow Location
+model <- glm(SquirrelHollywood ~ BurrowLoc,
+             data = syn_dat,
+             family = binomial)
+
+#View Summary of Model
+summary(model)
+
+# Fit a logistic regression of Bank Savings of these Squirrels based on their Burrow Location
+
+model2 <- lm(BankSavings_log ~ BurrowLoc, data = syn_dat)
+summary(model2)
+
+#Taken together, it appears that Burrow Location is a statistically strong indicator of fame status of squirrels, with being a resident of Chestnut Suites giving a statistically significant predictor of being a rich elite famous squirrel. In addition, burrow location, specifically Chestnut Suites, was a strong predictor of the bank savings of these squirrels, indicating that these Chestnut Suites squirrels are likely to have higher levels of savings.
+```
