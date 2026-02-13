@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -193,13 +194,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Data description</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Data description</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#This data is a compilation of hesitancy rates for COVID-19 vaccinations across the 50 United States and the District of Columbia. This data was collected from a Household Pulse Survey (HPS) asking whether survey responders would take a vaccine. This data was then used to estimate predicted hesitancy rates using data from an American Community Survery (ACS) census bureau.</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#ensure packages are installed</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#load the necessary libraries</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'dplyr'</code></pre>
@@ -214,11 +215,8 @@ Attaching package: 'dplyr'</code></pre>
 
     intersect, setdiff, setequal, union</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'purrr' was built under R version 4.4.3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'lubridate'</code></pre>
@@ -228,16 +226,11 @@ Attaching package: 'lubridate'</code></pre>
 
     date, intersect, setdiff, union</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggplot2' was built under R version 4.4.3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'readr' was built under R version 4.4.3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the CSV file</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>vaccdata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"vaccine-hesitancy-COVID-19-20260210-update.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the CSV file</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>vaccdata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"vaccine-hesitancy-COVID-19-20260210-update.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 3142 Columns: 17</code></pre>
 </div>
@@ -250,31 +243,31 @@ dbl  (3): FIPS Code, Social Vulnerability Index (SVI), CVAC level of concern...
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Data Cleaning</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Change column names</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(vaccdata) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"FIPS_code"</span>, <span class="st">"county_name"</span>, <span class="st">"state"</span>, <span class="st">"estimated_hesitancy"</span>, <span class="st">"estimated_unsure"</span>, <span class="st">"estimated_strongly_hesitant"</span>, <span class="st">"SVI"</span>, <span class="st">"SVI_category"</span>, <span class="st">"CVAC"</span>, <span class="st">"CVAC_category"</span>, <span class="st">"percent_vaccinated_adults"</span>, <span class="st">"percent_Hispanic"</span>, <span class="st">"percent_AmericanIndianorNative"</span>, <span class="st">"percent_Asian"</span>, <span class="st">"percent_Black"</span>, <span class="st">"percent_NativeHawaiian"</span>, <span class="st">"percent_white"</span>)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="do">##Remove % from columns</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>vaccdata<span class="sc">$</span>estimated_hesitancy <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"%"</span>, <span class="st">""</span>, vaccdata<span class="sc">$</span>estimated_hesitancy))</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>vaccdata[, <span class="fu">c</span>(<span class="st">"estimated hesitancy"</span>,<span class="st">"estimated_unsure"</span>, <span class="st">"estimated_strongly_hesitant"</span>, <span class="st">"percent_vaccinated_adults"</span>, <span class="st">"percent_Hispanic"</span>, <span class="st">"percent_AmericanIndianorNative"</span>, <span class="st">"percent_Asian"</span>, <span class="st">"percent_Black"</span>, <span class="st">"percent_NativeHawaiian"</span>, <span class="st">"percent_white"</span>)] <span class="ot">&lt;-</span> </span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(vaccdata[, <span class="fu">c</span>(<span class="st">"estimated_hesitancy"</span>, <span class="st">"estimated_unsure"</span>, <span class="st">"estimated_strongly_hesitant"</span>, <span class="st">"percent_vaccinated_adults"</span>, <span class="st">"percent_Hispanic"</span>, <span class="st">"percent_AmericanIndianorNative"</span>, <span class="st">"percent_Asian"</span>, <span class="st">"percent_Black"</span>, <span class="st">"percent_NativeHawaiian"</span>, <span class="st">"percent_white"</span>)],</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>         <span class="cf">function</span>(x) <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"%"</span>, <span class="st">""</span>, x)))</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary of State</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="do">##Generate frequency table for State Representation</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>frequency_state <span class="ot">&lt;-</span> <span class="fu">table</span>(vaccdata<span class="sc">$</span>state)</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a barplot of the vaccine type data</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>))   </span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">#provides proper margins for bottom, left, top, right</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(frequency_state,</span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="at">main=</span><span class="st">"Frequency Plot of State in Vaccine Hesitancy Data"</span>,</span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="at">ylab=</span><span class="st">"Frequency"</span>,</span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="at">col=</span><span class="st">"orange"</span>,</span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="at">las=</span><span class="dv">2</span>,</span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="at">cex.names=</span><span class="fl">0.6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Data Cleaning</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Change column names</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(vaccdata) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"FIPS_code"</span>, <span class="st">"county_name"</span>, <span class="st">"state"</span>, <span class="st">"estimated_hesitancy"</span>, <span class="st">"estimated_unsure"</span>, <span class="st">"estimated_strongly_hesitant"</span>, <span class="st">"SVI"</span>, <span class="st">"SVI_category"</span>, <span class="st">"CVAC"</span>, <span class="st">"CVAC_category"</span>, <span class="st">"percent_vaccinated_adults"</span>, <span class="st">"percent_Hispanic"</span>, <span class="st">"percent_AmericanIndianorNative"</span>, <span class="st">"percent_Asian"</span>, <span class="st">"percent_Black"</span>, <span class="st">"percent_NativeHawaiian"</span>, <span class="st">"percent_white"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="do">##Remove % from columns</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>vaccdata<span class="sc">$</span>estimated_hesitancy <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"%"</span>, <span class="st">""</span>, vaccdata<span class="sc">$</span>estimated_hesitancy))</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>vaccdata[, <span class="fu">c</span>(<span class="st">"estimated hesitancy"</span>,<span class="st">"estimated_unsure"</span>, <span class="st">"estimated_strongly_hesitant"</span>, <span class="st">"percent_vaccinated_adults"</span>, <span class="st">"percent_Hispanic"</span>, <span class="st">"percent_AmericanIndianorNative"</span>, <span class="st">"percent_Asian"</span>, <span class="st">"percent_Black"</span>, <span class="st">"percent_NativeHawaiian"</span>, <span class="st">"percent_white"</span>)] <span class="ot">&lt;-</span> </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(vaccdata[, <span class="fu">c</span>(<span class="st">"estimated_hesitancy"</span>, <span class="st">"estimated_unsure"</span>, <span class="st">"estimated_strongly_hesitant"</span>, <span class="st">"percent_vaccinated_adults"</span>, <span class="st">"percent_Hispanic"</span>, <span class="st">"percent_AmericanIndianorNative"</span>, <span class="st">"percent_Asian"</span>, <span class="st">"percent_Black"</span>, <span class="st">"percent_NativeHawaiian"</span>, <span class="st">"percent_white"</span>)],</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>         <span class="cf">function</span>(x) <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"%"</span>, <span class="st">""</span>, x)))</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary of State</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="do">##Generate frequency table for State Representation</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>frequency_state <span class="ot">&lt;-</span> <span class="fu">table</span>(vaccdata<span class="sc">$</span>state)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a barplot of the vaccine type data</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>))   </span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co">#provides proper margins for bottom, left, top, right</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(frequency_state,</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="at">main=</span><span class="st">"Frequency Plot of State in Vaccine Hesitancy Data"</span>,</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="at">ylab=</span><span class="st">"Frequency"</span>,</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="at">col=</span><span class="st">"orange"</span>,</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="at">las=</span><span class="dv">2</span>,</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="at">cex.names=</span><span class="fl">0.6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -282,10 +275,10 @@ dbl  (3): FIPS Code, Social Vulnerability Index (SVI), CVAC level of concern...
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary of hesitancy status (hesitant, unsure, highly hesitant)</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of estimated hesitancy rates to look for normal distribution</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> estimated_hesitancy)) <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary of hesitancy status (hesitant, unsure, highly hesitant)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of estimated hesitancy rates to look for normal distribution</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> estimated_hesitancy)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"black"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -296,15 +289,15 @@ dbl  (3): FIPS Code, Social Vulnerability Index (SVI), CVAC level of concern...
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize the hesitancy statistics</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>estimated_hesitancy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize the hesitancy statistics</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>estimated_hesitancy)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    2.69    9.83   13.18   13.26   16.17   26.70 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of estimated unsure rates to look for normal distribution</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> estimated_unsure)) <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"cyan"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of estimated unsure rates to look for normal distribution</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> estimated_unsure)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"cyan"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -315,15 +308,15 @@ dbl  (3): FIPS Code, Social Vulnerability Index (SVI), CVAC level of concern...
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize the unsure statistics</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>estimated_unsure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize the unsure statistics</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>estimated_unsure)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    4.99   14.85   19.01   19.14   22.88   32.33 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of estimated highly hesitant rates to look for normal distribution</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> estimated_strongly_hesitant)) <span class="sc">+</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"pink"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of estimated highly hesitant rates to look for normal distribution</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> estimated_strongly_hesitant)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"pink"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -334,16 +327,16 @@ dbl  (3): FIPS Code, Social Vulnerability Index (SVI), CVAC level of concern...
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize the strongly hesitant statistics</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>estimated_strongly_hesitant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize the strongly hesitant statistics</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>estimated_strongly_hesitant)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   1.860   6.232   8.490   8.665  10.447  18.240 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary of SVI</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="do">##SVI, also known as the Social Vulnerability Index, is a value representastive of how socially vulnerable a community is to disaster. On a scale of 0-1, a value closer to 1 signifies a great vulnerability to disaster.</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> SVI)) <span class="sc">+</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"blue"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary of SVI</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="do">##SVI, also known as the Social Vulnerability Index, is a value representastive of how socially vulnerable a community is to disaster. On a scale of 0-1, a value closer to 1 signifies a great vulnerability to disaster.</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> SVI)) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"blue"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 1 row containing non-finite outside the scale range
 (`stat_boxplot()`).</code></pre>
@@ -355,8 +348,8 @@ dbl  (3): FIPS Code, Social Vulnerability Index (SVI), CVAC level of concern...
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize the SVI statistics by state</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">by</span>(vaccdata<span class="sc">$</span>SVI, vaccdata<span class="sc">$</span>state, summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize the SVI statistics by state</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">by</span>(vaccdata<span class="sc">$</span>SVI, vaccdata<span class="sc">$</span>state, summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>vaccdata$state: ALABAMA
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -562,11 +555,11 @@ vaccdata$state: WYOMING
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
  0.0300  0.1050  0.2700  0.2535  0.3600  0.5600 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary of CVAC</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="do">##CVAC, also known as the COVID-19 Vaccine Coverage Index, is a measure of how well a community could handle the consequences of a COVID-19 outbreak in their community. It takes a number of variables and circumstances into account, including health care access, affordable housing, etc. On a scale of 0-1, values closer to 1 mean the community is highly vulnerable to a COVID-19 outbreak.</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> CVAC)) <span class="sc">+</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"green"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary of CVAC</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="do">##CVAC, also known as the COVID-19 Vaccine Coverage Index, is a measure of how well a community could handle the consequences of a COVID-19 outbreak in their community. It takes a number of variables and circumstances into account, including health care access, affordable housing, etc. On a scale of 0-1, values closer to 1 mean the community is highly vulnerable to a COVID-19 outbreak.</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> CVAC)) <span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"green"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -574,8 +567,8 @@ vaccdata$state: WYOMING
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize the CVAC statistics by state</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">by</span>(vaccdata<span class="sc">$</span>CVAC, vaccdata<span class="sc">$</span>state, summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize the CVAC statistics by state</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">by</span>(vaccdata<span class="sc">$</span>CVAC, vaccdata<span class="sc">$</span>state, summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>vaccdata$state: ALABAMA
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -781,10 +774,10 @@ vaccdata$state: WYOMING
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
  0.4400  0.4750  0.5500  0.5574  0.6250  0.7700 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Percent Vaccinated Adults Variable Summary</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of vaccination rates to look for normal distribution</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> percent_vaccinated_adults)) <span class="sc">+</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"purple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Percent Vaccinated Adults Variable Summary</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of vaccination rates to look for normal distribution</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> percent_vaccinated_adults)) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"purple"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -799,15 +792,15 @@ vaccdata$state: WYOMING
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize overall vaccine rates of adults</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>percent_vaccinated_adults)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize overall vaccine rates of adults</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>percent_vaccinated_adults)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
    0.10   31.80   40.00   39.94   49.40   99.90     278 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a boxplot of vaccinated status of adults by state</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> percent_vaccinated_adults)) <span class="sc">+</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"purple"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a boxplot of vaccinated status of adults by state</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> percent_vaccinated_adults)) <span class="sc">+</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"purple"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 278 rows containing non-finite outside the scale range
 (`stat_boxplot()`).</code></pre>
@@ -819,8 +812,8 @@ vaccdata$state: WYOMING
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize the percent of vaccinated adults by state</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">by</span>(vaccdata<span class="sc">$</span>percent_vaccinated_adults, vaccdata<span class="sc">$</span>state, summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize the percent of vaccinated adults by state</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">by</span>(vaccdata<span class="sc">$</span>percent_vaccinated_adults, vaccdata<span class="sc">$</span>state, summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>vaccdata$state: ALABAMA
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -1026,10 +1019,10 @@ vaccdata$state: WYOMING
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   23.70   30.95   36.40   37.92   42.60   78.90 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Percent Hispanic Variable Summary</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of Hispanic demographic to look for normal distribution</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> percent_Hispanic)) <span class="sc">+</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"yellow"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Percent Hispanic Variable Summary</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of Hispanic demographic to look for normal distribution</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> percent_Hispanic)) <span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"yellow"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -1040,16 +1033,16 @@ vaccdata$state: WYOMING
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize Hispanic presence in survey responders</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>percent_Hispanic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize Hispanic presence in survey responders</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>percent_Hispanic)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   0.000   2.220   4.230   9.418   9.680  99.170 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Percent American Indian and/or Native American Variable Summary</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of American Indian and/or Native American demographic to look for normal distribution</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> percent_AmericanIndianorNative)) <span class="sc">+</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"gray"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Percent American Indian and/or Native American Variable Summary</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of American Indian and/or Native American demographic to look for normal distribution</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> percent_AmericanIndianorNative)) <span class="sc">+</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"gray"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -1060,16 +1053,16 @@ vaccdata$state: WYOMING
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize American Indian and/or Native American presence in survey responders</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>percent_AmericanIndianorNative)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize American Indian and/or Native American presence in survey responders</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>percent_AmericanIndianorNative)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   0.000   0.120   0.280   1.846   0.690  91.900 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Percent Asian Variable Summary</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of Asian demographic to look for normal distribution</span></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> percent_Asian)) <span class="sc">+</span></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"lavender"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Percent Asian Variable Summary</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of Asian demographic to look for normal distribution</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> percent_Asian)) <span class="sc">+</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"lavender"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -1080,16 +1073,16 @@ vaccdata$state: WYOMING
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize Asian presence in survey responders</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>percent_Asian)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize Asian presence in survey responders</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>percent_Asian)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   0.000   0.280   0.610   1.362   1.280  41.730 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Percent Black Variable Summary</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of Black demographic to look for normal distribution</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> percent_Black)) <span class="sc">+</span></span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"orchid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Percent Black Variable Summary</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of Black demographic to look for normal distribution</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> percent_Black)) <span class="sc">+</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"orchid"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -1100,16 +1093,16 @@ vaccdata$state: WYOMING
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize Black presence in survey responders</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>percent_Black)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize Black presence in survey responders</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>percent_Black)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   0.000   0.650   2.190   8.926   9.840  87.230 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Percent White Variable Summary</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of White demographic to look for normal distribution</span></span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> percent_white)) <span class="sc">+</span></span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"seagreen"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Percent White Variable Summary</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="do">##Make a histogram of White demographic to look for normal distribution</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccdata, <span class="fu">aes</span>(<span class="at">x =</span> percent_white)) <span class="sc">+</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"seagreen"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -1120,15 +1113,987 @@ vaccdata$state: WYOMING
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize White presence in survey responders</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>percent_white)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Summarize White presence in survey responders</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vaccdata<span class="sc">$</span>percent_white)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    0.69   64.44   83.74   76.25   92.49  100.00 </code></pre>
 </div>
 </div>
+<section id="this-section-contributed-by-saraa-al-jawad" class="level2">
+<h2 class="anchored" data-anchor-id="this-section-contributed-by-saraa-al-jawad">This section contributed by Saraa Al Jawad</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Making synthetic data with same structure as vaccdata</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># AI assistance used:</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="co"># I used ChatGPT (an LLM AI tool) to help generate the synthetic data code. </span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="co"># I used the same as Joe's code to plot and summarize the table for the synthetic data* </span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>clamp <span class="ot">&lt;-</span> <span class="cf">function</span>(x, lo, hi) <span class="fu">pmin</span>(<span class="fu">pmax</span>(x, lo), hi)</span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create synthetic dataset</span></span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>vacc_synth <span class="ot">&lt;-</span> vaccdata <span class="sc">%&gt;%</span></span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="fu">nrow</span>(vaccdata), <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">FIPS_code =</span> <span class="fu">sample</span>(vaccdata<span class="sc">$</span>FIPS_code, <span class="at">size =</span> <span class="fu">n</span>(), <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">estimated_hesitancy =</span> <span class="fu">clamp</span>(estimated_hesitancy <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">n</span>(), <span class="dv">0</span>, <span class="fl">1.0</span>), <span class="dv">0</span>, <span class="dv">100</span>),</span>
+<span id="cb60-19"><a href="#cb60-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">estimated_unsure =</span> <span class="fu">clamp</span>(estimated_unsure <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">n</span>(), <span class="dv">0</span>, <span class="fl">1.0</span>), <span class="dv">0</span>, <span class="dv">100</span>),</span>
+<span id="cb60-20"><a href="#cb60-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">estimated_strongly_hesitant =</span> <span class="fu">clamp</span>(estimated_strongly_hesitant <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">n</span>(), <span class="dv">0</span>, <span class="fl">0.8</span>), <span class="dv">0</span>, <span class="dv">100</span>),</span>
+<span id="cb60-21"><a href="#cb60-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-22"><a href="#cb60-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">SVI =</span> <span class="fu">clamp</span>(SVI <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">n</span>(), <span class="dv">0</span>, <span class="fl">0.05</span>), <span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb60-23"><a href="#cb60-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">CVAC =</span> <span class="fu">clamp</span>(CVAC <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">n</span>(), <span class="dv">0</span>, <span class="fl">0.05</span>), <span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb60-24"><a href="#cb60-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-25"><a href="#cb60-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_vaccinated_adults =</span> <span class="fu">clamp</span>(percent_vaccinated_adults <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">n</span>(), <span class="dv">0</span>, <span class="fl">2.0</span>), <span class="dv">0</span>, <span class="dv">100</span>),</span>
+<span id="cb60-26"><a href="#cb60-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-27"><a href="#cb60-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_Hispanic =</span> <span class="fu">clamp</span>(percent_Hispanic <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">n</span>(), <span class="dv">0</span>, <span class="fl">2.0</span>), <span class="dv">0</span>, <span class="dv">100</span>),</span>
+<span id="cb60-28"><a href="#cb60-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_AmericanIndianorNative =</span> <span class="fu">clamp</span>(percent_AmericanIndianorNative <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">n</span>(), <span class="dv">0</span>, <span class="fl">1.0</span>), <span class="dv">0</span>, <span class="dv">100</span>),</span>
+<span id="cb60-29"><a href="#cb60-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_Asian =</span> <span class="fu">clamp</span>(percent_Asian <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">n</span>(), <span class="dv">0</span>, <span class="fl">1.0</span>), <span class="dv">0</span>, <span class="dv">100</span>),</span>
+<span id="cb60-30"><a href="#cb60-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_Black =</span> <span class="fu">clamp</span>(percent_Black <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">n</span>(), <span class="dv">0</span>, <span class="fl">2.0</span>), <span class="dv">0</span>, <span class="dv">100</span>),</span>
+<span id="cb60-31"><a href="#cb60-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_NativeHawaiian =</span> <span class="fu">clamp</span>(percent_NativeHawaiian <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">n</span>(), <span class="dv">0</span>, <span class="fl">0.2</span>), <span class="dv">0</span>, <span class="dv">100</span>),</span>
+<span id="cb60-32"><a href="#cb60-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_white =</span> <span class="fu">clamp</span>(percent_white <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">n</span>(), <span class="dv">0</span>, <span class="fl">2.0</span>), <span class="dv">0</span>, <span class="dv">100</span>)</span>
+<span id="cb60-33"><a href="#cb60-33" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb60-34"><a href="#cb60-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-35"><a href="#cb60-35" aria-hidden="true" tabindex="-1"></a><span class="co"># quick check that structure</span></span>
+<span id="cb60-36"><a href="#cb60-36" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(vacc_synth)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [3,142 × 18] (S3: tbl_df/tbl/data.frame)
+ $ FIPS_code                     : num [1:3142] 19175 13197 45031 35047 26143 ...
+ $ county_name                   : chr [1:3142] "Providence County, Rhode Island" "Fulton County, Pennsylvania" "Watauga County, North Carolina" "Mississippi County, Arkansas" ...
+ $ state                         : chr [1:3142] "RHODE ISLAND" "PENNSYLVANIA" "NORTH CAROLINA" "ARKANSAS" ...
+ $ estimated_hesitancy           : num [1:3142] 8.1 13.2 13.5 23.2 12.4 ...
+ $ estimated_unsure              : num [1:3142] 10.3 18 20.4 27 20.5 ...
+ $ estimated_strongly_hesitant   : num [1:3142] 6.08 8.68 12.12 15.05 9.09 ...
+ $ SVI                           : num [1:3142] 0.774 0.211 0.363 1 0.577 ...
+ $ SVI_category                  : chr [1:3142] "High Vulnerability" "Low Vulnerability" "Moderate Vulnerability" "Very High Vulnerability" ...
+ $ CVAC                          : num [1:3142] 0.163 0.38 0.352 0.776 0.976 ...
+ $ CVAC_category                 : chr [1:3142] "Very Low Concern" "Moderate Concern" "Moderate Concern" "High Concern" ...
+ $ percent_vaccinated_adults     : num [1:3142] 58.2 30.5 46.8 35.1 NA ...
+ $ percent_Hispanic              : num [1:3142] 23.89 2.8 3.68 8.73 6.9 ...
+ $ percent_AmericanIndianorNative: num [1:3142] 0.774 0.736 0.784 0.107 0 ...
+ $ percent_Asian                 : num [1:3142] 3.465 2.33 2.233 0.548 2.569 ...
+ $ percent_Black                 : num [1:3142] 5.16 7.02 3.31 32.36 20.68 ...
+ $ percent_NativeHawaiian        : num [1:3142] 0 0 0.422 0 0 ...
+ $ percent_white                 : num [1:3142] 62.7 96.4 93.4 57.9 71.6 ...
+ $ estimated hesitancy           : num [1:3142] 7.24 13.04 13.95 21.68 12.83 ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(vacc_synth)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "FIPS_code"                      "county_name"                   
+ [3] "state"                          "estimated_hesitancy"           
+ [5] "estimated_unsure"               "estimated_strongly_hesitant"   
+ [7] "SVI"                            "SVI_category"                  
+ [9] "CVAC"                           "CVAC_category"                 
+[11] "percent_vaccinated_adults"      "percent_Hispanic"              
+[13] "percent_AmericanIndianorNative" "percent_Asian"                 
+[15] "percent_Black"                  "percent_NativeHawaiian"        
+[17] "percent_white"                  "estimated hesitancy"           </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparison Summaries between original data vs. synthetic </span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>summary_compare <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>  vaccdata <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">dataset =</span> <span class="st">"original"</span>),</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>  vacc_synth <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">dataset =</span> <span class="st">"synthetic"</span>)</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dataset) <span class="sc">%&gt;%</span></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">hesitancy_mean =</span> <span class="fu">mean</span>(estimated_hesitancy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">hesitancy_sd   =</span> <span class="fu">sd</span>(estimated_hesitancy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">SVI_mean       =</span> <span class="fu">mean</span>(SVI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">CVAC_mean      =</span> <span class="fu">mean</span>(CVAC, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">white_mean     =</span> <span class="fu">mean</span>(percent_white, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb64-15"><a href="#cb64-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">vaccinated_mean=</span> <span class="fu">mean</span>(percent_vaccinated_adults, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb64-16"><a href="#cb64-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb64-17"><a href="#cb64-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb64-18"><a href="#cb64-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-19"><a href="#cb64-19" aria-hidden="true" tabindex="-1"></a>summary_compare</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 8
+  dataset       n hesitancy_mean hesitancy_sd SVI_mean CVAC_mean white_mean
+  &lt;chr&gt;     &lt;int&gt;          &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+1 original   3142           13.3         4.63    0.5       0.500       76.2
+2 synthetic  3142           13.2         4.68    0.493     0.498       76.0
+# ℹ 1 more variable: vaccinated_mean &lt;dbl&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of State (frequency + barplot)</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>frequency_state_synth <span class="ot">&lt;-</span> <span class="fu">table</span>(vacc_synth<span class="sc">$</span>state)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>frequency_state_synth</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+       ALABAMA         ALASKA        ARIZONA       ARKANSAS     CALIFORNIA 
+            75             26             12             71             49 
+      COLORADO    CONNECTICUT       DELAWARE        FLORIDA        GEORGIA 
+            74              9              3             72            155 
+        HAWAII          IDAHO       ILLINOIS        INDIANA           IOWA 
+             6             39             93             86            109 
+        KANSAS       KENTUCKY      LOUISIANA          MAINE       MARYLAND 
+           103            126             65             13             27 
+ MASSACHUSETTS       MICHIGAN      MINNESOTA    MISSISSIPPI       MISSOURI 
+            13             71             91             76            122 
+       MONTANA       NEBRASKA         NEVADA  NEW HAMPSHIRE     NEW JERSEY 
+            48             92             18             13             23 
+    NEW MEXICO       NEW YORK NORTH CAROLINA   NORTH DAKOTA           OHIO 
+            35             62            110             55             77 
+      OKLAHOMA         OREGON   PENNSYLVANIA   RHODE ISLAND SOUTH CAROLINA 
+            84             27             65              8             47 
+  SOUTH DAKOTA      TENNESSEE          TEXAS           UTAH        VERMONT 
+            57            104            260             32             15 
+      VIRGINIA     WASHINGTON  WEST VIRGINIA      WISCONSIN        WYOMING 
+           131             34             50             87             22 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>))</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  frequency_state_synth,</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">main=</span><span class="st">"Frequency Plot of State in SYNTHETIC Vaccine Hesitancy Data"</span>,</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab=</span><span class="st">"Frequency"</span>,</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">col=</span><span class="st">"orange"</span>,</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">las=</span><span class="dv">2</span>,</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">cex.names=</span><span class="fl">0.6</span></span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of hesitancy status </span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vacc_synth, <span class="fu">aes</span>(<span class="at">x =</span> estimated_hesitancy)) <span class="sc">+</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"black"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick comparison between synthetic and original data </span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  vaccdata <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">dataset =</span> <span class="st">"original"</span>),</span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>  vacc_synth <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">dataset =</span> <span class="st">"synthetic"</span>)</span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> estimated_hesitancy)) <span class="sc">+</span></span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>dataset, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-2-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vacc_synth<span class="sc">$</span>estimated_hesitancy)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  2.247   9.733  13.125  13.218  16.202  27.815 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vacc_synth, <span class="fu">aes</span>(<span class="at">x =</span> estimated_unsure)) <span class="sc">+</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"cyan"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-2-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vacc_synth<span class="sc">$</span>estimated_unsure)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   4.63   14.93   19.05   19.06   22.64   34.81 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vacc_synth, <span class="fu">aes</span>(<span class="at">x =</span> estimated_strongly_hesitant)) <span class="sc">+</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"pink"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-2-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vacc_synth<span class="sc">$</span>estimated_strongly_hesitant)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1194  6.1896  8.5002  8.6532 10.6943 19.4074 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of SVI </span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vacc_synth, <span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> SVI)) <span class="sc">+</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-2-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">by</span>(vacc_synth<span class="sc">$</span>SVI, vacc_synth<span class="sc">$</span>state, summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>vacc_synth$state: ALABAMA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1338  0.5699  0.7531  0.7162  0.8716  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: ALASKA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1118  0.3529  0.5008  0.5091  0.6425  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: ARIZONA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.5167  0.6135  0.6734  0.7386  0.8820  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: ARKANSAS
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.2150  0.6784  0.8041  0.7632  0.9051  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: CALIFORNIA
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+0.001898 0.383641 0.517564 0.539879 0.733174 0.959279 
+------------------------------------------------------------ 
+vacc_synth$state: COLORADO
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.09054 0.35370 0.40228 0.65207 1.00000 
+------------------------------------------------------------ 
+vacc_synth$state: CONNECTICUT
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.09898 0.12118 0.39044 0.30796 0.44232 0.52668 
+------------------------------------------------------------ 
+vacc_synth$state: DELAWARE
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.3217  0.3759  0.4301  0.4038  0.4448  0.4596 
+------------------------------------------------------------ 
+vacc_synth$state: FLORIDA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.06253 0.42404 0.59317 0.61907 0.86617 1.00000 
+------------------------------------------------------------ 
+vacc_synth$state: GEORGIA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.5711  0.7896  0.7217  0.9203  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: HAWAII
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.3405  0.4608  0.5246  0.4982  0.5626  0.5848 
+------------------------------------------------------------ 
+vacc_synth$state: IDAHO
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0402  0.2906  0.5339  0.4731  0.6918  0.8605 
+------------------------------------------------------------ 
+vacc_synth$state: ILLINOIS
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1274  0.2886  0.3484  0.5016  0.9497 
+------------------------------------------------------------ 
+vacc_synth$state: INDIANA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1526  0.3321  0.3496  0.5121  0.8340 
+------------------------------------------------------------ 
+vacc_synth$state: IOWA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.09014 0.19320 0.23234 0.33835 0.68223 
+------------------------------------------------------------ 
+vacc_synth$state: KANSAS
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1405  0.2394  0.2892  0.4245  0.9366 
+------------------------------------------------------------ 
+vacc_synth$state: KENTUCKY
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.02716 0.46451 0.62140 0.59827 0.75631 0.95869 
+------------------------------------------------------------ 
+vacc_synth$state: LOUISIANA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.4186  0.7695  0.8513  0.8203  0.9084  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: MAINE
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1197  0.1718  0.2326  0.3425  0.5747  0.6347 
+------------------------------------------------------------ 
+vacc_synth$state: MARYLAND
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1829  0.3343  0.4317  0.7104  0.9791 
+------------------------------------------------------------ 
+vacc_synth$state: MASSACHUSETTS
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1999  0.2187  0.2478  0.2972  0.7486 
+------------------------------------------------------------ 
+vacc_synth$state: MICHIGAN
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.2471  0.3755  0.3924  0.5136  0.8853 
+------------------------------------------------------------ 
+vacc_synth$state: MINNESOTA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1033  0.2037  0.2484  0.3301  0.8778 
+------------------------------------------------------------ 
+vacc_synth$state: MISSISSIPPI
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.3008  0.6766  0.8457  0.7956  0.9567  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: MISSOURI
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.3544  0.4861  0.4862  0.6327  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: MONTANA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.04535 0.19782 0.29138 0.49988 0.92533 
+------------------------------------------------------------ 
+vacc_synth$state: NEBRASKA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.01738 0.10262 0.14578 0.20933 0.90646 
+------------------------------------------------------------ 
+vacc_synth$state: NEVADA
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+0.0005531 0.3685673 0.5410899 0.4870039 0.6411857 0.9396271 
+------------------------------------------------------------ 
+vacc_synth$state: NEW HAMPSHIRE
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.03852 0.15342 0.12153 0.18806 0.23247 
+------------------------------------------------------------ 
+vacc_synth$state: NEW JERSEY
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.2262  0.3708  0.4041  0.6132  0.9921 
+------------------------------------------------------------ 
+vacc_synth$state: NEW MEXICO
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+ 0.0000  0.8475  0.8863  0.8202  0.9716  1.0000       1 
+------------------------------------------------------------ 
+vacc_synth$state: NEW YORK
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.09778 0.37097 0.50875 0.51799 0.67287 1.00000 
+------------------------------------------------------------ 
+vacc_synth$state: NORTH CAROLINA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.07632 0.41592 0.72119 0.63164 0.84942 1.00000 
+------------------------------------------------------------ 
+vacc_synth$state: NORTH DAKOTA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.04866 0.10514 0.18039 0.23978 0.97369 
+------------------------------------------------------------ 
+vacc_synth$state: OHIO
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+0.0004888 0.1966948 0.3874154 0.3794886 0.5299312 0.8765311 
+------------------------------------------------------------ 
+vacc_synth$state: OKLAHOMA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1390  0.4591  0.6680  0.6456  0.8458  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: OREGON
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.09879 0.50814 0.65700 0.58593 0.73658 0.84263 
+------------------------------------------------------------ 
+vacc_synth$state: PENNSYLVANIA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.03001 0.26428 0.39508 0.38200 0.49493 0.93067 
+------------------------------------------------------------ 
+vacc_synth$state: RHODE ISLAND
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.08291 0.12858 0.16100 0.28666 0.32859 0.77378 
+------------------------------------------------------------ 
+vacc_synth$state: SOUTH CAROLINA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.2373  0.6774  0.9046  0.8150  0.9733  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: SOUTH DAKOTA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.07326 0.20298 0.24573 0.30857 0.92277 
+------------------------------------------------------------ 
+vacc_synth$state: TENNESSEE
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.09829 0.45517 0.58603 0.57978 0.72183 0.98456 
+------------------------------------------------------------ 
+vacc_synth$state: TEXAS
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.5207  0.7311  0.6803  0.8734  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: UTAH
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.2065  0.3013  0.3371  0.4517  0.9676 
+------------------------------------------------------------ 
+vacc_synth$state: VERMONT
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.07967 0.14374 0.15033 0.21757 0.34880 
+------------------------------------------------------------ 
+vacc_synth$state: VIRGINIA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.2298  0.4090  0.4646  0.7408  0.9951 
+------------------------------------------------------------ 
+vacc_synth$state: WASHINGTON
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.02108 0.35415 0.52220 0.53269 0.71110 0.93889 
+------------------------------------------------------------ 
+vacc_synth$state: WEST VIRGINIA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.05631 0.33998 0.51012 0.49878 0.62126 0.91061 
+------------------------------------------------------------ 
+vacc_synth$state: WISCONSIN
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1149  0.1871  0.2403  0.3238  0.8742 
+------------------------------------------------------------ 
+vacc_synth$state: WYOMING
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1264  0.2278  0.2407  0.3536  0.5844 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of CVAC </span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vacc_synth, <span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> CVAC)) <span class="sc">+</span></span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"green"</span>) <span class="sc">+</span></span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-2-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">by</span>(vacc_synth<span class="sc">$</span>CVAC, vacc_synth<span class="sc">$</span>state, summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>vacc_synth$state: ALABAMA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1388  0.5922  0.7784  0.7137  0.8545  0.9665 
+------------------------------------------------------------ 
+vacc_synth$state: ALASKA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.4804  0.6924  0.7472  0.7387  0.7977  0.9748 
+------------------------------------------------------------ 
+vacc_synth$state: ARIZONA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.6284  0.7355  0.7837  0.8248  0.9354  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: ARKANSAS
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.2694  0.5857  0.6810  0.6665  0.7666  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: CALIFORNIA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.3632  0.4591  0.5718  0.5873  0.7006  0.8812 
+------------------------------------------------------------ 
+vacc_synth$state: COLORADO
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.06588 0.18704 0.30971 0.35923 0.50294 0.81261 
+------------------------------------------------------------ 
+vacc_synth$state: CONNECTICUT
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+0.000000 0.001561 0.032231 0.036068 0.047051 0.102937 
+------------------------------------------------------------ 
+vacc_synth$state: DELAWARE
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1531  0.1588  0.1645  0.1743  0.1848  0.2051 
+------------------------------------------------------------ 
+vacc_synth$state: FLORIDA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.3195  0.5310  0.6841  0.6985  0.9188  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: GEORGIA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.3101  0.6532  0.7822  0.7473  0.8835  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: HAWAII
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.2176  0.2490  0.2728  0.2891  0.3381  0.3701 
+------------------------------------------------------------ 
+vacc_synth$state: IDAHO
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1488  0.3122  0.4356  0.4497  0.5877  0.7391 
+------------------------------------------------------------ 
+vacc_synth$state: ILLINOIS
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.04168 0.23619 0.38459 0.38001 0.49340 0.86204 
+------------------------------------------------------------ 
+vacc_synth$state: INDIANA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.2091  0.4987  0.6112  0.6071  0.7172  0.9430 
+------------------------------------------------------------ 
+vacc_synth$state: IOWA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.00000 0.02277 0.05582 0.08978 0.35480 
+------------------------------------------------------------ 
+vacc_synth$state: KANSAS
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1770  0.3375  0.4540  0.4552  0.5696  0.8184 
+------------------------------------------------------------ 
+vacc_synth$state: KENTUCKY
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1206  0.2745  0.2709  0.4096  0.7231 
+------------------------------------------------------------ 
+vacc_synth$state: LOUISIANA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.3366  0.6584  0.7551  0.7449  0.8451  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: MAINE
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.03168 0.15773 0.24981 0.28965 0.46860 0.61069 
+------------------------------------------------------------ 
+vacc_synth$state: MARYLAND
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+0.0003478 0.0795935 0.1872743 0.2198819 0.3578033 0.5082971 
+------------------------------------------------------------ 
+vacc_synth$state: MASSACHUSETTS
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.00000 0.00954 0.01991 0.03879 0.06556 
+------------------------------------------------------------ 
+vacc_synth$state: MICHIGAN
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0494  0.2205  0.3606  0.3752  0.5350  0.7491 
+------------------------------------------------------------ 
+vacc_synth$state: MINNESOTA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0290  0.2012  0.3145  0.3302  0.4178  0.9178 
+------------------------------------------------------------ 
+vacc_synth$state: MISSISSIPPI
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.3422  0.8556  0.9336  0.8890  0.9744  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: MISSOURI
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.2817  0.6143  0.7105  0.7031  0.8191  0.9716 
+------------------------------------------------------------ 
+vacc_synth$state: MONTANA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.04367 0.19607 0.31194 0.34992 0.43840 0.76263 
+------------------------------------------------------------ 
+vacc_synth$state: NEBRASKA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1450  0.2051  0.2138  0.2645  0.6996 
+------------------------------------------------------------ 
+vacc_synth$state: NEVADA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.4918  0.6185  0.6906  0.7360  0.8825  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: NEW HAMPSHIRE
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.04101 0.06414 0.06826 0.08959 0.15229 
+------------------------------------------------------------ 
+vacc_synth$state: NEW JERSEY
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.06785 0.12480 0.15359 0.22068 0.47791 
+------------------------------------------------------------ 
+vacc_synth$state: NEW MEXICO
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1530  0.5311  0.6548  0.6215  0.7060  0.8877 
+------------------------------------------------------------ 
+vacc_synth$state: NEW YORK
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.02202 0.17341 0.25641 0.27685 0.37798 0.58622 
+------------------------------------------------------------ 
+vacc_synth$state: NORTH CAROLINA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1644  0.4531  0.6679  0.6262  0.7777  0.9492 
+------------------------------------------------------------ 
+vacc_synth$state: NORTH DAKOTA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.05178 0.13261 0.16071 0.20424 0.77635 
+------------------------------------------------------------ 
+vacc_synth$state: OHIO
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.06896 0.17833 0.22412 0.31692 0.59445 
+------------------------------------------------------------ 
+vacc_synth$state: OKLAHOMA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.3121  0.5830  0.6782  0.6791  0.8009  0.9833 
+------------------------------------------------------------ 
+vacc_synth$state: OREGON
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.2957  0.4399  0.5144  0.5026  0.5626  0.7963 
+------------------------------------------------------------ 
+vacc_synth$state: PENNSYLVANIA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1006  0.1846  0.2153  0.3453  0.6472 
+------------------------------------------------------------ 
+vacc_synth$state: RHODE ISLAND
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+0.0000000 0.0008712 0.0192349 0.0428982 0.0528944 0.1628125 
+------------------------------------------------------------ 
+vacc_synth$state: SOUTH CAROLINA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1863  0.5339  0.7321  0.6877  0.8621  0.9726 
+------------------------------------------------------------ 
+vacc_synth$state: SOUTH DAKOTA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1406  0.2088  0.2464  0.2954  0.8339 
+------------------------------------------------------------ 
+vacc_synth$state: TENNESSEE
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.4191  0.6708  0.7747  0.7561  0.8649  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: TEXAS
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.4374  0.8126  0.9048  0.8724  0.9595  1.0000 
+------------------------------------------------------------ 
+vacc_synth$state: UTAH
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1816  0.3739  0.4530  0.4820  0.5789  0.8922 
+------------------------------------------------------------ 
+vacc_synth$state: VERMONT
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.04301 0.07548 0.12605 0.16401 0.24896 0.37539 
+------------------------------------------------------------ 
+vacc_synth$state: VIRGINIA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1901  0.3043  0.3278  0.4595  0.7592 
+------------------------------------------------------------ 
+vacc_synth$state: WASHINGTON
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1214  0.3711  0.4851  0.4799  0.6037  0.8570 
+------------------------------------------------------------ 
+vacc_synth$state: WEST VIRGINIA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1203  0.3494  0.4474  0.4133  0.5074  0.6039 
+------------------------------------------------------------ 
+vacc_synth$state: WISCONSIN
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.09662 0.15009 0.16389 0.21658 0.73124 
+------------------------------------------------------------ 
+vacc_synth$state: WYOMING
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.3829  0.4618  0.5030  0.5330  0.5766  0.8015 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Percent Vaccinated Adults </span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vacc_synth, <span class="fu">aes</span>(<span class="at">x =</span> percent_vaccinated_adults)) <span class="sc">+</span></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"purple"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 279 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-2-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vacc_synth<span class="sc">$</span>percent_vaccinated_adults)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   0.00   32.11   39.98   40.19   49.71   99.29     279 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vacc_synth, <span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> percent_vaccinated_adults)) <span class="sc">+</span></span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"purple"</span>) <span class="sc">+</span></span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 279 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-2-9.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">by</span>(vacc_synth<span class="sc">$</span>percent_vaccinated_adults, vacc_synth<span class="sc">$</span>state, summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>vacc_synth$state: ALABAMA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  18.51   27.11   31.19   32.24   35.26   51.41 
+------------------------------------------------------------ 
+vacc_synth$state: ALASKA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  28.66   49.52   60.33   58.77   68.55   90.67 
+------------------------------------------------------------ 
+vacc_synth$state: ARIZONA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  34.69   40.22   46.46   48.95   53.14   84.21 
+------------------------------------------------------------ 
+vacc_synth$state: ARKANSAS
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  22.31   30.62   34.04   34.32   37.51   47.86 
+------------------------------------------------------------ 
+vacc_synth$state: CALIFORNIA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  27.26   42.73   50.61   50.64   59.37   72.26       4 
+------------------------------------------------------------ 
+vacc_synth$state: COLORADO
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  17.16   26.83   32.37   33.94   41.04   59.77 
+------------------------------------------------------------ 
+vacc_synth$state: CONNECTICUT
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  50.05   64.76   68.40   66.22   70.55   75.11 
+------------------------------------------------------------ 
+vacc_synth$state: DELAWARE
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  56.23   56.92   57.60   57.32   57.87   58.13 
+------------------------------------------------------------ 
+vacc_synth$state: FLORIDA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  24.07   33.27   43.58   42.68   49.88   70.95 
+------------------------------------------------------------ 
+vacc_synth$state: GEORGIA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.185   6.720  11.670  15.162  21.434  99.167 
+------------------------------------------------------------ 
+vacc_synth$state: HAWAII
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+     NA      NA      NA     NaN      NA      NA       6 
+------------------------------------------------------------ 
+vacc_synth$state: IDAHO
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  27.35   33.68   38.46   39.64   41.53   71.08 
+------------------------------------------------------------ 
+vacc_synth$state: ILLINOIS
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  23.65   33.88   41.75   41.35   47.05   70.16 
+------------------------------------------------------------ 
+vacc_synth$state: INDIANA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  25.92   38.26   41.93   43.31   47.24   65.04 
+------------------------------------------------------------ 
+vacc_synth$state: IOWA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  38.37   49.77   54.04   53.29   57.65   66.21 
+------------------------------------------------------------ 
+vacc_synth$state: KANSAS
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  30.86   37.93   43.45   43.24   47.36   64.54 
+------------------------------------------------------------ 
+vacc_synth$state: KENTUCKY
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  19.53   34.60   39.90   40.36   44.09   63.65 
+------------------------------------------------------------ 
+vacc_synth$state: LOUISIANA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  17.59   31.22   33.74   34.30   37.04   67.29 
+------------------------------------------------------------ 
+vacc_synth$state: MAINE
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  49.25   58.87   66.95   64.33   71.09   78.21 
+------------------------------------------------------------ 
+vacc_synth$state: MARYLAND
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  38.82   46.61   55.45   54.66   61.23   76.45 
+------------------------------------------------------------ 
+vacc_synth$state: MASSACHUSETTS
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.6256 55.2880 60.6370 49.2814 64.2797 71.9736 
+------------------------------------------------------------ 
+vacc_synth$state: MICHIGAN
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  33.86   45.26   51.39   52.31   58.74   78.72 
+------------------------------------------------------------ 
+vacc_synth$state: MINNESOTA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  30.20   47.14   51.95   52.26   56.88   73.52 
+------------------------------------------------------------ 
+vacc_synth$state: MISSISSIPPI
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  17.39   31.08   34.55   35.12   39.22   51.44 
+------------------------------------------------------------ 
+vacc_synth$state: MISSOURI
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  15.08   27.14   32.71   32.13   36.55   49.83 
+------------------------------------------------------------ 
+vacc_synth$state: MONTANA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  11.78   33.30   37.78   40.04   46.49   76.49 
+------------------------------------------------------------ 
+vacc_synth$state: NEBRASKA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   8.68   28.57   37.00   36.37   42.69   63.37 
+------------------------------------------------------------ 
+vacc_synth$state: NEVADA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  14.96   34.73   39.96   38.60   47.03   58.07 
+------------------------------------------------------------ 
+vacc_synth$state: NEW HAMPSHIRE
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  53.32   59.74   62.38   62.33   63.88   72.99 
+------------------------------------------------------------ 
+vacc_synth$state: NEW JERSEY
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  39.98   54.93   59.10   58.58   63.55   70.10 
+------------------------------------------------------------ 
+vacc_synth$state: NEW MEXICO
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  24.02   36.10   46.09   44.71   51.10   99.29 
+------------------------------------------------------------ 
+vacc_synth$state: NEW YORK
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  35.20   49.58   55.17   55.35   62.07   70.72 
+------------------------------------------------------------ 
+vacc_synth$state: NORTH CAROLINA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  19.88   36.50   40.08   40.82   45.38   80.81 
+------------------------------------------------------------ 
+vacc_synth$state: NORTH DAKOTA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  15.98   36.82   46.98   44.01   52.26   67.91 
+------------------------------------------------------------ 
+vacc_synth$state: OHIO
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  27.20   38.47   42.53   44.29   48.15   71.80 
+------------------------------------------------------------ 
+vacc_synth$state: OKLAHOMA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  22.00   32.87   37.05   37.11   40.98   55.63 
+------------------------------------------------------------ 
+vacc_synth$state: OREGON
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  36.67   49.59   54.36   54.37   58.98   68.54 
+------------------------------------------------------------ 
+vacc_synth$state: PENNSYLVANIA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  29.43   38.31   45.02   46.67   54.96   72.29 
+------------------------------------------------------------ 
+vacc_synth$state: RHODE ISLAND
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  58.22   63.28   65.58   64.77   66.93   70.50 
+------------------------------------------------------------ 
+vacc_synth$state: SOUTH CAROLINA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  22.79   35.21   40.56   39.53   44.44   54.67 
+------------------------------------------------------------ 
+vacc_synth$state: SOUTH DAKOTA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  9.493  35.845  41.950  40.616  47.080  65.681 
+------------------------------------------------------------ 
+vacc_synth$state: TENNESSEE
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  20.71   30.02   33.04   34.62   38.72   54.18 
+------------------------------------------------------------ 
+vacc_synth$state: TEXAS
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+     NA      NA      NA     NaN      NA      NA     260 
+------------------------------------------------------------ 
+vacc_synth$state: UTAH
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  27.20   35.82   39.46   40.53   43.93   67.15 
+------------------------------------------------------------ 
+vacc_synth$state: VERMONT
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  33.72   37.81   55.64   54.05   65.65   74.55 
+------------------------------------------------------------ 
+vacc_synth$state: VIRGINIA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  0.000   6.862  17.755  22.064  34.852  70.179       9 
+------------------------------------------------------------ 
+vacc_synth$state: WASHINGTON
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  28.63   39.51   51.57   49.21   54.22   72.37 
+------------------------------------------------------------ 
+vacc_synth$state: WEST VIRGINIA
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  2.513  13.970  19.145  20.666  28.723  37.324 
+------------------------------------------------------------ 
+vacc_synth$state: WISCONSIN
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  32.40   47.91   53.57   53.31   58.62   78.27 
+------------------------------------------------------------ 
+vacc_synth$state: WYOMING
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  23.69   34.48   42.42   41.57   44.40   79.25 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demographics: </span></span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vacc_synth, <span class="fu">aes</span>(<span class="at">x =</span> percent_Hispanic)) <span class="sc">+</span></span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"yellow"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-2-10.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vacc_synth<span class="sc">$</span>percent_Hispanic)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.000   2.116   4.673   9.564  10.173 100.000 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vacc_synth, <span class="fu">aes</span>(<span class="at">x =</span> percent_AmericanIndianorNative)) <span class="sc">+</span></span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"gray"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-2-11.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vacc_synth<span class="sc">$</span>percent_AmericanIndianorNative)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.0000  0.5247  1.8753  1.4178 91.5620 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vacc_synth, <span class="fu">aes</span>(<span class="at">x =</span> percent_Asian)) <span class="sc">+</span></span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"lavender"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-2-12.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vacc_synth<span class="sc">$</span>percent_Asian)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.000   0.000   0.810   1.501   1.837  42.694 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vacc_synth, <span class="fu">aes</span>(<span class="at">x =</span> percent_Black)) <span class="sc">+</span></span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"orchid"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-2-13.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vacc_synth<span class="sc">$</span>percent_Black)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.5064  3.0355  9.6319 10.9782 90.1270 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vacc_synth, <span class="fu">aes</span>(<span class="at">x =</span> percent_white)) <span class="sc">+</span></span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"seagreen"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-2-14.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vacc_synth<span class="sc">$</span>percent_white)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00   63.95   83.30   76.04   92.39  100.00 </code></pre>
+</div>
+</div>
+<section id="summary-on-synthetic-data" class="level3">
+<h3 class="anchored" data-anchor-id="summary-on-synthetic-data"><em>Summary on synthetic data</em></h3>
+<p><em>I generated a synthetic dataset (vacc_synth) with the same variables and overall structure as the cleaned dataset (vaccdata) using AI assistance (ChatGPT).To assess how close the synthetic data is to the original, I made a quick comparison between the data and summary. The results shows the synthetic distributions are similar in shape and range to the original, data with small differences expected due to random sampling.</em></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1182,13 +2147,14 @@ vaccdata$state: WYOMING
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

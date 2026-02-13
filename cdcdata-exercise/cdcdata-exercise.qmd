@@ -137,3 +137,160 @@ ggplot(data = vaccdata, aes(x = percent_white)) +
 ##Summarize White presence in survey responders
 summary(vaccdata$percent_white)
 ```
+
+## This section contributed by Saraa Al Jawad 
+
+
+```{r}
+## Making synthetic data with same structure as vaccdata
+
+# AI assistance used:
+# I used ChatGPT (an LLM AI tool) to help generate the synthetic data code. 
+# I used the same as Joe's code to plot and summarize the table for the synthetic data* 
+
+set.seed(123)
+
+clamp <- function(x, lo, hi) pmin(pmax(x, lo), hi)
+
+# Create synthetic dataset
+vacc_synth <- vaccdata %>%
+  slice_sample(n = nrow(vaccdata), replace = TRUE) %>%
+  mutate(
+    
+    FIPS_code = sample(vaccdata$FIPS_code, size = n(), replace = TRUE),
+
+    estimated_hesitancy = clamp(estimated_hesitancy + rnorm(n(), 0, 1.0), 0, 100),
+    estimated_unsure = clamp(estimated_unsure + rnorm(n(), 0, 1.0), 0, 100),
+    estimated_strongly_hesitant = clamp(estimated_strongly_hesitant + rnorm(n(), 0, 0.8), 0, 100),
+
+    SVI = clamp(SVI + rnorm(n(), 0, 0.05), 0, 1),
+    CVAC = clamp(CVAC + rnorm(n(), 0, 0.05), 0, 1),
+
+    percent_vaccinated_adults = clamp(percent_vaccinated_adults + rnorm(n(), 0, 2.0), 0, 100),
+
+    percent_Hispanic = clamp(percent_Hispanic + rnorm(n(), 0, 2.0), 0, 100),
+    percent_AmericanIndianorNative = clamp(percent_AmericanIndianorNative + rnorm(n(), 0, 1.0), 0, 100),
+    percent_Asian = clamp(percent_Asian + rnorm(n(), 0, 1.0), 0, 100),
+    percent_Black = clamp(percent_Black + rnorm(n(), 0, 2.0), 0, 100),
+    percent_NativeHawaiian = clamp(percent_NativeHawaiian + rnorm(n(), 0, 0.2), 0, 100),
+    percent_white = clamp(percent_white + rnorm(n(), 0, 2.0), 0, 100)
+  )
+
+# quick check that structure
+str(vacc_synth)
+names(vacc_synth)
+
+# Comparison Summaries between original data vs. synthetic 
+
+summary_compare <- bind_rows(
+  vaccdata %>% mutate(dataset = "original"),
+  vacc_synth %>% mutate(dataset = "synthetic")
+) %>%
+  group_by(dataset) %>%
+  summarize(
+    n = n(),
+    hesitancy_mean = mean(estimated_hesitancy, na.rm = TRUE),
+    hesitancy_sd   = sd(estimated_hesitancy, na.rm = TRUE),
+    SVI_mean       = mean(SVI, na.rm = TRUE),
+    CVAC_mean      = mean(CVAC, na.rm = TRUE),
+    white_mean     = mean(percent_white, na.rm = TRUE),
+    vaccinated_mean= mean(percent_vaccinated_adults, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+summary_compare
+
+
+# Summary of State (frequency + barplot)
+frequency_state_synth <- table(vacc_synth$state)
+frequency_state_synth
+
+par(mar = c(7, 4, 4, 2))
+barplot(
+  frequency_state_synth,
+  main="Frequency Plot of State in SYNTHETIC Vaccine Hesitancy Data",
+  ylab="Frequency",
+  col="orange",
+  las=2,
+  cex.names=0.6
+)
+
+
+
+# Summary of hesitancy status 
+ggplot(data = vacc_synth, aes(x = estimated_hesitancy)) +
+  geom_histogram(fill = "black")
+
+# Quick comparison between synthetic and original data 
+
+bind_rows(
+  vaccdata %>% mutate(dataset = "original"),
+  vacc_synth %>% mutate(dataset = "synthetic")
+) %>%
+  ggplot(aes(x = estimated_hesitancy)) +
+  geom_histogram() +
+  facet_wrap(~dataset, ncol = 1)
+
+
+summary(vacc_synth$estimated_hesitancy)
+
+ggplot(data = vacc_synth, aes(x = estimated_unsure)) +
+  geom_histogram(fill = "cyan")
+summary(vacc_synth$estimated_unsure)
+
+ggplot(data = vacc_synth, aes(x = estimated_strongly_hesitant)) +
+  geom_histogram(fill = "pink")
+summary(vacc_synth$estimated_strongly_hesitant)
+
+# Summary of SVI 
+ggplot(data = vacc_synth, aes(x = state, y = SVI)) +
+  geom_boxplot(fill = "blue") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+
+by(vacc_synth$SVI, vacc_synth$state, summary)
+
+# Summary of CVAC 
+ggplot(data = vacc_synth, aes(x = state, y = CVAC)) +
+  geom_boxplot(fill = "green") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+
+by(vacc_synth$CVAC, vacc_synth$state, summary)
+
+# Percent Vaccinated Adults 
+ggplot(data = vacc_synth, aes(x = percent_vaccinated_adults)) +
+  geom_histogram(fill = "purple")
+summary(vacc_synth$percent_vaccinated_adults)
+
+ggplot(data = vacc_synth, aes(x = state, y = percent_vaccinated_adults)) +
+  geom_boxplot(fill = "purple") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+
+by(vacc_synth$percent_vaccinated_adults, vacc_synth$state, summary)
+
+# Demographics: 
+ggplot(data = vacc_synth, aes(x = percent_Hispanic)) +
+  geom_histogram(fill = "yellow")
+summary(vacc_synth$percent_Hispanic)
+
+ggplot(data = vacc_synth, aes(x = percent_AmericanIndianorNative)) +
+  geom_histogram(fill = "gray")
+summary(vacc_synth$percent_AmericanIndianorNative)
+
+ggplot(data = vacc_synth, aes(x = percent_Asian)) +
+  geom_histogram(fill = "lavender")
+summary(vacc_synth$percent_Asian)
+
+ggplot(data = vacc_synth, aes(x = percent_Black)) +
+  geom_histogram(fill = "orchid")
+summary(vacc_synth$percent_Black)
+
+ggplot(data = vacc_synth, aes(x = percent_white)) +
+  geom_histogram(fill = "seagreen")
+summary(vacc_synth$percent_white)
+
+```
+
+
+### *Summary on synthetic data* 
+*I generated a synthetic dataset (vacc_synth) with the same variables and overall structure as the cleaned dataset (vaccdata) using AI assistance (ChatGPT).To assess how close the synthetic data is to the original, I made a quick comparison between the data and summary. The results shows the synthetic distributions are similar in shape and range to the original, data with small differences expected due to random sampling.*
+
